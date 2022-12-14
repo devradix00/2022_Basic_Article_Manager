@@ -64,20 +64,30 @@ public class Main {
 				String[] cmdBits = cmd.split("");
 				int id = Integer.parseInt(cmdBits[2]);  //'article' 'detail' '1'
 				
-				boolean found = false;
 				
-				for(int i =0; iMarticles.size();i++) {
+				Article foundArticle = null;
+				
+				
+				for(int i =0; i < articles.size();i++) {
 					Article article = articles.get(i);
 					
 					if(article.id ==id) {
-						found = true;
-						System.out.printf("%d번 게시물은존재합니다.\n", id);
+						foundArticle = article;
+											
+						break;
+						
+						
 					}
 				}
 				
-				if(found == false) {
+				if(foundArticle == null) {
 					System.out.printf("%d 번 게시물은 존재하지 않습니다.\n", id);
 					continue;
+				} else {
+					System.out.printf("번호 : %d\n", foundArticle.id);
+					System.out.printf("날짜 : %s\n", foundArticle.title);
+					System.out.printf("제목 : %s\n", foundArticle.title);
+					System.out.printf("내용 : %s\n", foundArticle.body);
 				}
 			}
 			else if (cmd.equals("article delete 1")) {
