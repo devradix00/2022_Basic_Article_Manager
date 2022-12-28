@@ -83,18 +83,45 @@ public class Main {
 				if(foundArticle == null) {
 					System.out.printf("%d 번 게시물은 존재하지 않습니다.\n", id);
 					continue;
-				} else {
-					System.out.printf("번호 : %d\n", foundArticle.id);
-					System.out.printf("날짜 : %s\n", foundArticle.title);
-					System.out.printf("제목 : %s\n", foundArticle.title);
-					System.out.printf("내용 : %s\n", foundArticle.body);
 				}
+				System.out.printf("번호 : %d\n", foundArticle.id);
+				System.out.printf("날짜 : %s\n", foundArticle.title);
+				System.out.printf("제목 : %s\n", foundArticle.title);
+				System.out.printf("내용 : %s\n", foundArticle.body);
+			
 			}
-			else if (cmd.equals("article delete 1")) {
+			else if (cmd.startsWith("articile delete ")) {
 				
+				String[] cmdBits = cmd.split("");
+				int id = Integer.parseInt(cmdBits[2]);  //'article' 'detail' '1'
+				
+				
+				Article foundArticle = null;
+				
+				int foundIndex = -1;
+				
+				
+				for(int i =0; i < articles.size();i++) {
+					Article article = articles.get(i);
+					
+					if(article.id ==id) {
+						foundArticle = article;
+											
+						break;
+						
+						
+					}
+				}
+				
+				if(foundArticle == null) {
+					System.out.printf("%d 번 게시물은 존재하지 않습니다.\n", id);
+					continue;
+				} 
+				
+				articles.remove(id - 1);
+				
+				System.out.printf("%d번 게시물이 삭제되었습니다", id);
 			}
-			
-			
 			else
 			{
 				System.out.println("존재하지 않는 명령어입니다.");
